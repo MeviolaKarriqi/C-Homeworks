@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+
+
+string njeshe[] = {"","nje","dy","tre","kater","pese","gjashte","shtate","tete","nente","dhjete","njembedhjete","dymbedhjete","trembedhjete","katermbedhjete",
+					"pesembedhjete","gjashtembedhjete","shtatembedhjete","tetembedhjete","nentembedhjete"};
+
+string dhjeteshe[] = {"",""," njezet "," tridhjete "," dyzet "," pesedhjete "," gjashtedhjete "," shtatedhjete "," tetedhjete "," nentedhjete "};
+
+string numNeFjale(int n, string s)
+{
+    string str = "";
+
+    if (n > 19)
+        str += dhjeteshe[n / 10] + " e " + njeshe[n % 10];
+    else
+        str += njeshe[n];
+    if (n)
+        str += s;
+
+    return str;
+}
+
+string konvertoNeFjale(long n){
+	//ruan perfaqesimin ne fjale te n se dhene
+	string out;
+	//merret me shifrat ne vendet mijeshe
+	out += numNeFjale(((n/1000)%100),"mije ");
+	if (n>1000 && n%100){
+		out += " e ";
+	}
+
+	//merret me shifrat ne vendet qindeshe
+	out += numNeFjale(((n/100)%10),"qind ");
+	if (n>100 && n%100){
+		out += " e ";
+	}
+	out += numNeFjale((n % 100), "");
+
+	return out;
+}
+
+int main (){
+	int n;
+	cout <<"Vendosni numrin n : ";
+	cin >>n;
+
+	cout <<"Numri juaj i konvertuar ne fjale eshte :\n"<<konvertoNeFjale(n)<<endl;
+
+	return 0;
+
+}
