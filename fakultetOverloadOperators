@@ -1,0 +1,68 @@
+//Ndertoni nje klase Fakultet qe ruan emrin dhe numrin e studenteve te nje fakulteti.
+// Ndërtoni për të konstruktorin me parametra.
+// Ndërtoni metodën vendosVlera për ti dhënë vlerë variablave të instances, nga një metode që kthen secilën
+// prej variablave të instancës, si dhe një metodë afisho që i afishon në ekran. Ndertoni operatorin overload >
+// per klasen Fakultet  duke u bazuar tek numri i studenteve.
+
+#include <iostream>
+
+using namespace std;
+
+class Fakultet {
+private:
+    string emri;
+    int nrStudentesh;
+
+public:
+    Fakultet()
+    {
+        emri="";
+        nrStudentesh=0;
+    }
+    Fakultet(string e, int i){
+        emri=e;
+        nrStudentesh=i;
+    }
+
+    friend bool operator >(const Fakultet& f1 , const Fakultet& f2);
+    friend ostream & operator<< (ostream& os, const Fakultet & f);
+    friend istream & operator>> (istream& is, Fakultet & f);
+};
+bool operator >(const Fakultet& f1 , const Fakultet& f2){
+    return (f1.nrStudentesh > f2.nrStudentesh);
+}
+
+
+ostream & operator<< (ostream& os, const Fakultet& f)
+{
+    os<<"Emri i fakultetit : "<<f.emri<<endl;
+    os<<"Nr i studenteve : "<<f.nrStudentesh<<endl;
+    return os;
+}
+
+istream & operator>> (istream& is, Fakultet& f){
+    is>>f.emri>>f.nrStudentesh;
+    return is;
+}
+
+int main() {
+    string s;
+    int nr;
+
+    Fakultet fakultet1 (s, nr);
+    cout<<"Vendos emrin e fakultetit dhe numrin e studenteve : ";
+    cin>>fakultet1;
+
+    Fakultet fakultet2 (s, nr);
+    cout<<"Vendos emrin e fakultetit dhe numrin e studenteve : ";
+    cin>>fakultet1;
+    cout<<fakultet1;
+    cout<<fakultet1;
+    if( fakultet1 > fakultet2 ) {
+        cout << "Fakulteti i dyte ka nr me te madh studentetsh " << endl;
+    } else {
+        cout << "Fakulteti i pare ka nr me te madh studentetsh " << endl;
+    }
+    return 0;
+}
+
